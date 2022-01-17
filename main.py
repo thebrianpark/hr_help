@@ -8,7 +8,8 @@ def main():
     renamer = Renamer("1.25.22", db, target_dir)
     for filename in os.listdir(target_dir):
         print("Working on filename: {}".format(filename))
-        renamer.rename_file(filename)
+        full_path = os.path.join(target_dir, filename)
+        renamer.rename_file(full_path)
 
 if __name__ == '__main__':
     main()
