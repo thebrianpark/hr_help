@@ -17,7 +17,7 @@ class Renamer:
         elements = base_filename.split()
         num_elements = len(elements)
         if num_elements > 3:
-            print("file name has {} elements, which is too many.".format(num_elements))
+            print("File name has {} elements, which is too many.".format(num_elements))
             raise ValueError
         first_name = elements[0]
         last_name = elements[1]
