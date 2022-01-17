@@ -8,9 +8,13 @@ class Renamer:
         self.formatter = Formatter(payroll_date)
         self.target_dir = target_dir
 
-    def rename_file(self, base_filename):
-        emp_info = os.path.basename(base_filename)
-        elements = emp_info.split()
+    def get_new_filename(self, filename):
+        #split the extension
+        filename, ext = os.path.splitext(filename)
+        #get only the base filename
+        base_filename = os.path.basename(filename)
+
+        elements = base_filename.split()
         num_elements = len(elements)
         if num_elements > 3:
             print("file name has {} elements, which is too many.".format(num_elements))
@@ -27,8 +31,11 @@ class Renamer:
                 emp.company_name,
                 emp.first_name,
                 emp.last_name,)
-        filename = self.target_dir + "/" + base_filename
-        new_filename = self.target_dir + "/" + new_filename
+        new_filename = self.target_dir + "/" + new_filename + ext
+        return os.path.normpath(new_filename)
+
+    def rename_file(self, filename):
+        new_filename = self.get_new_filename(filename)
         os.rename(filename, new_filename)
         print("Renamed '{}' to '{}'".format(filename, new_filename))
 
