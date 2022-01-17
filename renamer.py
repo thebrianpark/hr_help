@@ -1,5 +1,4 @@
 from formatter import Formatter
-from database import EmployeeDatabase
 import os
 
 class Renamer:
@@ -34,6 +33,7 @@ class Renamer:
         print("Renamed '{}' to '{}'".format(filename, new_filename))
 
 if __name__ == '__main__':
+    from database import EmployeeDatabase
     db = EmployeeDatabase('Employee-Tracking-Status-2022-Payroll.csv')
     target_dir = 'tests'
     renamer = Renamer("1.25.22", db, target_dir)
